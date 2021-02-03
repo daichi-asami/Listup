@@ -44,7 +44,7 @@ get '/signin' do
 end
 
 post '/signin' do
-    content = Content.find_by(name: params[:title])
+    content = Content.find_by(title: params[:title])
     if content && content.authenticate(params[:password])
         session[:content] = content.id
     end
@@ -61,7 +61,7 @@ get '/questions/new' do
 end
 
 post '/questions' do
-  current_content.questions.create(title: params[:question])
+  current_content.questions.create(title: params[:title])
   redirect '/'
 end
 
