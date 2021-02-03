@@ -61,7 +61,7 @@ get '/questions/new' do
 end
 
 post '/questions' do
-  current_content.questions.create(title: params[:title])
+  current_content.create(title: params[:title])
   redirect '/'
 end
 
