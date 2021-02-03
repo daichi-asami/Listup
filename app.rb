@@ -15,6 +15,11 @@ helpers do
 end
 
 get '/' do
+    if current_content.nil?
+      @questions = Question.none
+    else
+      @questions = current_content.questions
+    end
     erb :index
 end
 
@@ -32,6 +37,32 @@ post '/signup' do
         session[:content] = content.id   
     end
     redirect '/'
+end
+
+get '/signin' do
+    erb :sign_in
+end
+
+post '/signin' do
+    content = Content.find_by(name: params[:title])
+    if content && content.authenticate(params[:password])
+        session[:content] = content.id
+    end
+    redirect '/'
+end
+
+get '/signout' do
+    session[:content] = nil
+    redirect '/'
+end
+
+get '/questions/new' do
+  erb :new
+end
+
+post '/questions' do
+  current_content.questions.create(title: params[:question])
+  redirect '/'
 end
 
 def client

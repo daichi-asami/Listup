@@ -1,9 +1,22 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-	<meta charset="UTF-8">
-	<title>タイトル</title>
-</head>
-<body>
-</body>
-</html>
+<div>
+    <div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>タイトル</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @questions.each do |question| %>
+                    <tr>
+                        <td><%= question.title %></td>
+                    </tr> 
+                    <% end %>
+                    <tr><td colspan="6"><a href="/questions/new">新しいtodo</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
